@@ -1,24 +1,12 @@
-# list-vue
+# Приложение "Список дел"
 
-## Project setup
-```
-npm install
-```
+## Учебный проект
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+Цель: создание приложения, которое позволяет создавать и удалять список дел . Использование на практике полученных теоретических знаний по Vue
 
-### Compiles and minifies for production
-```
-npm run build
-```
+Технологии: Vue 3, localStorage
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+После скачивания:
+-Командой npm install установить пакеты
+-Командой npm run serve запустить проект
+-Открыть приложение на требуемом хосте
