@@ -31,5 +31,13 @@ export default {
 <style>
   .enter-form{
     margin-bottom: 20px;
+    width:100%;
+    display: flex; 
+    justify-content: space-between;
+  }
+
+  .enter-form input{
+    width:100%;
+    margin-right: 20px;
   }
 </style>

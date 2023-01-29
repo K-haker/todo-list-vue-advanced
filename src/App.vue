@@ -27,13 +27,11 @@
 
       addToDo(toDo){   
         this.toDoList.push(toDo)
-
         localStorage.setItem('toDoList', JSON.stringify(this.toDoList))
       },
 
-      deleteToDoItem(toDo, index){
-/*         this.toDoList = this.toDoList.filter(p=> p.id !== toDo.id) */
-        this.toDoList.splice(index, 1)
+      deleteToDoItem(toDo){
+        this.toDoList = this.toDoList.filter(p=> p.id !== toDo.id)
         localStorage.setItem('toDoList', JSON.stringify(this.toDoList))
       },
     },
@@ -46,28 +44,67 @@
 </script>
 
 <style>
+a{
+   text-decoration: none;
+   color: black;
+}
+
+h1,h2,h3,h4,h5,h6{
+   margin: 0;
+   padding: 0;
+}
+
+*,
+*:before,
+*:after{
+   margin: 0;
+   padding: 0;
+   -webkit-box-sizing: border-box;
+   box-sizing: border-box;
+   font-family: sans-serif;
+}
+
+*:active,
+*:focus{
+   outline: none;
+}
+
+
 #app {
   font-family:  sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  margin-top: 60px;
   display: flex;
   justify-content: center;
+  background-color: #f5f5dc;
+  width:100%;
+  height: 100vh;
+}
+
+.main-block{
+  margin-top: 60px;
+  padding: 30px;
+  background-color: #ffffff;
+  height: auto;
+  margin-bottom: 30px;
+  border-radius: 20px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.229);
+  max-width: 400px;
+  width: 100%;
 }
 
 li{
   list-style: none;
 }
 
-.mar30{
-  margin-bottom: 30px;
-}
-
 .do-item{
   margin-right: auto;
 }
 
+h1{
+  margin-bottom: 30px;
+}
 
 
 
