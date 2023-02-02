@@ -11,6 +11,7 @@ export default {
       return{
         toDo:{
           dataBody:"",
+          completed: false,
         }
       }
     },

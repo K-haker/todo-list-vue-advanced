@@ -2,7 +2,9 @@
   <div class="main-block mar30">
     <h1>Список дел</h1>
     <EnterForm @createToDo="addToDo"/>
-    <DoList @deleteDoItem = "deleteToDoItem" @checkedItem="didItem" class="do-item"  v-bind:toDoList="toDoList"/>
+    <div class="tasks-counter">Кол-во задач: <span class="span-fw-700"> {{  toDoList.length }} </span></div>
+    <DoList @deleteDoItem = "deleteToDoItem"  @onItemCompleted="onItemCompleted" class="do-item"  v-bind:toDoList="toDoList"/>
+
   </div>
 </template>
 
@@ -28,17 +30,31 @@
       addToDo(toDo){   
         this.toDoList.push(toDo)
         localStorage.setItem('toDoList', JSON.stringify(this.toDoList))
+
       },
 
       deleteToDoItem(toDo){
         this.toDoList = this.toDoList.filter(p=> p.id !== toDo.id)
         localStorage.setItem('toDoList', JSON.stringify(this.toDoList))
       },
+
+      onItemCompleted(toDo){
+        if(toDo.completed === true){
+          toDo.completed = false
+        } else {
+          toDo.completed= true
+        }
+      },
+
     },
 
     async mounted(){
-      const data = await localStorage.getItem('toDoList')
-      data? this.toDoList = JSON.parse(data) : null
+      const data =  localStorage.getItem('toDoList')
+      /*data? this.toDoList = JSON.parse(data) : null*/ 
+
+      if (data){
+        this.toDoList = JSON.parse(data)
+      }
     }
   }
 </script>
@@ -104,6 +120,14 @@ li{
 
 h1{
   margin-bottom: 30px;
+}
+
+.tasks-counter{
+  margin-bottom: 15px;
+}
+
+.span-fw-700{
+  font-weight: 700;
 }
 
 
