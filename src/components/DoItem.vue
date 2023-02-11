@@ -32,6 +32,9 @@ export default {
   .list-item__delete{
     display: inline-block;
     cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
   }
 
   .checked .list-item__todo{
@@ -42,6 +45,7 @@ export default {
     display: flex;
     justify-content: space-between;
     margin-bottom: 5px;
+    position: relative
   }
 
   .list-item__todo{
@@ -57,6 +61,7 @@ export default {
     width: 100%;
     position: relative;
     padding-left: 20px;
+    padding-right: 30px;
   }
   .list-item__left input{
     position: absolute;
