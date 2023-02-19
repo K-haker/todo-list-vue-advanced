@@ -1,5 +1,6 @@
 import MainPage from "@/pages/MainPage";
-import SecondPage from "@/pages/SecondPage";
+import NotCalendarList from "@/pages/NotCalendarList";
+import OneToDo from "@/pages/OneToDo"
 import {createRouter, createWebHistory} from "vue-router";
 
 
@@ -10,9 +11,16 @@ const routes = [
     },
 
     {
-        path: '/second',
-        component: SecondPage
+        path: '/nclists',
+        component: NotCalendarList
     },
+
+    {
+        path: '/todo',
+        component: OneToDo
+    },
+
+
 ]
 
 const router = createRouter({

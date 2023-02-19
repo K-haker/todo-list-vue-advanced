@@ -1,102 +1,16 @@
 <template>
   <div class="main-block mar30">  
-
-    <div class="one-todo">
-      <h1 class="main-block__title">Список дел</h1>
-      <div class="close__one-todo" title="закрыть этот список дел">Х</div>
-      <EnterForm @createToDo="addToDo"/>
-      <div class="tasks-block">
-        <div class="tasks-counter">Кол-во задач: <span class="span-fw-700"> {{toDoList.length}} </span></div>
-        <button v-if="toDoList.length > 0" @click="clearList" class="tasks-clear">Очистить</button>
-      </div>
-      <DoList @deleteDoItem = "deleteToDoItem"  @onItemCompleted="onItemCompleted" class="do-item"  v-bind:toDoList="toDoList"/>
-      <button @click="deleteOneToDo" class="delete-one-todo" title="Удалить этот список дел">Удалить</button>
-
-      
-      <div class="delete-one-day__modal">
-        <div class="delete-one-day__modal-close">Х</div> 
-        <h3>Вы уверены что хотите удалить этот список дел?</h3>
-        <div class="delete-one-day__modal-buttons">
-          <button>Да</button>
-          <button>Нет</button>
-        </div>
-      </div>
-
-
+    <div class="help-block">
+      <div>Настройки</div>
+      <div>Помощь</div>
     </div>
 
-      <div class="help-block">
-        <div>Настройки</div>
-        <div>Помощь</div>
-      </div>
-
-      <div>
-        <router-view></router-view>
-      </div>
+    <div>
+      <router-view></router-view>
+    </div>
 
   </div>
 </template>
-
-<script>
-  import EnterForm from '@/components/EnterForm.vue'
-  import DoList from '@/components/DoList.vue'
-
-  export default {
-    name: 'App',
-    components: {
-      EnterForm,
-      DoList,
-    },
-
-    data:() =>({
-      toDoList:[
-        
-      ],
-    }),
-
-    methods:{
-
-      addToDo(toDo){  
-        this.toDoList.push(toDo)
-        localStorage.setItem('toDoList', JSON.stringify(this.toDoList))
-
-      },
-
-      deleteToDoItem(toDo){
-        this.toDoList = this.toDoList.filter(p=> p.id !== toDo.id)
-        localStorage.setItem('toDoList', JSON.stringify(this.toDoList))
-      },
-
-      onItemCompleted(toDo){
-        if(toDo.completed === true){
-          toDo.completed = false
-        } else {
-          toDo.completed= true
-        }
-      },
-
-      clearList(){
-        this.toDoList.splice(0, this.toDoList.length)
-        localStorage.setItem('toDoList', JSON.stringify(this.toDoList))
-      },
-
-      deleteOneToDo(){
-      }
-
-    },
-
-    async mounted(){
-      const data =  localStorage.getItem('toDoList')
-/*  data? this.toDoList = JSON.parse(data) : null  */
-
-
-
-      if (data){
-        this.toDoList = JSON.parse(data)
-      }
-    }
-  }
-</script>
 
 <style>
 a{
@@ -139,10 +53,6 @@ h1,h2,h3,h4,h5,h6{
 
 button{
   cursor: pointer;
-}
-
-.main-block{
-
 }
 
 li{
