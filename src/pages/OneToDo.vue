@@ -9,18 +9,7 @@
         <button v-if="toDoList.length > 0" @click="clearList" class="tasks-clear">Очистить</button>
       </div>
       <DoList @deleteDoItem = "deleteToDoItem"  @onItemCompleted="onItemCompleted" class="do-item"  v-bind:toDoList="toDoList"/>
-      <button @click="deleteOneToDo" class="delete-one-todo" title="Удалить этот список дел">Удалить</button>
-
-      
-      <div class="delete-list__modal">
-        <div class="delete-list__modal-close">Х</div> 
-        <h3>Вы уверены что хотите удалить этот список дел?</h3>
-        <div class="delete-list__modal-buttons">
-          <button>Да</button>
-          <button>Нет</button>
-        </div>
-      </div>
-      
+      <button @click="deleteOneToDo" class="delete-one-todo" title="Удалить этот список дел">Удалить</button>   
     </div>
   </div>
 </template>

@@ -1,18 +1,25 @@
 <template>
   <div class="main-page">
-    <router-link to="/clist">
+<!--     <router-link to="/clist">
       <div class="main-page__calendar">
         <img src="" alt="">
         <div class="main-page__block-name">Датированный список дел (с календарем)</div>
       </div>
-    </router-link>
+    </router-link> -->
 
     <router-link to="/nclists">
       <div class="main-page__not-calendar">
         <img src="" alt="">
-        <div class="main-page__block-name"> Недатированный список дел </div>
+        <div class="main-page__block-name"> Недатированные списки дел </div>
       </div>
     </router-link>
+
+<!--     <router-link to="">
+      <div class="">
+        <img src="" alt="">
+        <div class="main-page__block-name"> Заметки </div>
+      </div>
+    </router-link> -->
   </div>
 </template>
 

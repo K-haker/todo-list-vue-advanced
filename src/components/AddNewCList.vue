@@ -15,13 +15,16 @@ export default {
       listsItem:{
         name: "Новый список дел",
         completed: false,
+        toDo:[
+
+        ]
       }
     }
   },
 
     methods:{
       createCList(){
-        this.listsItem.id = Date.now();
+        this.listsItem.id = Date.now() ;
         this.$emit('createNewCList', this.listsItem);
       },
 

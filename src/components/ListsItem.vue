@@ -2,13 +2,13 @@
   <div class="lists__main">
     <div :class="{ completed: listsItem.completed === true }"  class="lists-item" v-for="(listsItem, index) in notCalendarList" :key="index">
       <router-link class="lists-item__img-wrap" to="/todo">
-      <div class="lists-item__rename">
+      <div @click.prevent="$emit('renameList', listsItem)" class="lists-item__rename">
         <img src="@/images/pen-1.svg" alt="">
       </div>
       </router-link>
       <div class="lists-item__name">{{listsItem.name}} , {{listsItem.id}}</div>
       <button @click="$emit('deleteCList', listsItem)" class="lists-item__delete">Х</button>
-      <input @click="$emit('onItemsNCListCompleted', listsItem)" class="lists-item__completed" type="checkbox">
+      <input @click="$emit('onItemsNCListCompleted', listsItem)" class="lists-item__completed" type="checkbox" :checked="listsItem.completed === true">
     </div>
   </div>
 </template>
@@ -21,7 +21,6 @@
       notCalendarList:{
         type: Object,
         required: true,
-
       },
     },
 
@@ -34,7 +33,9 @@
       }
     },
 
+    methods:{
 
+    }
   }
 </script>
 
@@ -92,7 +93,16 @@
   }
 
   .lists-item__rename{
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 30px;
+  }
+
+  .lists-item__rename,
+  .lists-item__rename img{
     width: 25px;
-    height: 25px;;
+    height: 25px;
+    z-index: 1000;
   }
 </style>
