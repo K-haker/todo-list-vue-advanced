@@ -1,16 +1,16 @@
 <template>
-    <div v-show="show === true" class="delete-list__modal-wrapper">
-      <div class="delete-list__modal">
-        <button  @click="$emit('closeModalDeleteNCList', ModalDeleteNotCalendList)" class="delete-list__modal-close">Х</button> 
-        <h3>Вы уверены что хотите удалить <strong>ВСЕ</strong> списки дел?</h3>
-        <div class="delete-list__modal-buttons">
-          <button @click="$emit('deleteAllCListsYes', listsItem) ">Да</button>
-          <button @click="$emit('closeModalDeleteNCList', ModalDeleteNotCalendList)">Нет</button>
-        </div>
+  <div v-show="show === true" class="delete-list__modal-wrapper">
+    <div class="delete-list__modal">
+      <button  @click="$emit('closeModalDeleteAllLists')" class="delete-list__modal-close">Х</button> 
+      <h3>Вы уверены что хотите удалить <strong>ВСЕ</strong> списки дел?</h3>
+      <div class="delete-list__modal-buttons">
+        <button @click="$emit('clearNCList', listsItem) ">Да</button>
+        <button @click="$emit('closeModalDeleteAllLists')">Нет</button>
       </div>
-      <div @click="$emit('closeModalDeleteNCList', ModalDeleteNotCalendList)" class="delete-list__modal-background"></div>
     </div>
-  </template>
+    <div @click="$emit('closeModalDeleteAllLists', ModalDeleteNotCalendList)" class="delete-list__modal-background"></div>
+  </div>
+</template>
     
   <script>
   export default {

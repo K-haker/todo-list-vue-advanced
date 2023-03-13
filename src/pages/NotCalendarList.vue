@@ -3,12 +3,12 @@
     <h1>Недатированный список дел</h1>
     <input class="lists-search" type="text" placeholder="Поиск">
     <add-new-c-list @createNewCList="createCList" ></add-new-c-list>
-    <button v-show="notCalendarList.length > 0"  class="clear-nclist"  @click="clearNCList"  @deleteAllCListsYes ="clearNCList">Очистить </button>
+    <button v-show="notCalendarList.length > 0"  class="clear-nclist"    @click ="modalClearNCList">Очистить </button>
     <lists-item @renameList = "renameList"  @deleteCList = "deleteCList"  v-model:notCalendarList="notCalendarList" @onItemsNCListCompleted="onItemsNCListCompleted"></lists-item>
     <div v-if="notCalendarList.length == 0">Список дел сейчас пуст</div>
-    <modal-delete-not-calend-list @deleteCListYes = "deleteCListYes" @closeModalDeleteNCList="closeModalDeleteNCList" v-model:show="dialogVisible"></modal-delete-not-calend-list>
     <modal-rename-list   @renameList = "renameList" @newNameList ="newNameList" @closeModalRenameList="closeModalRenameList" v-model:show="renameModalVisible" v-model="newListName"></modal-rename-list>
-    <modal-delete-all-lists v-model:show="dialogVisible" @closeDeleteAllLists="closeDeleteAllLists"></modal-delete-all-lists>
+    <modal-delete-not-calend-list @deleteCListYes = "deleteCListYes" @closeModalDeleteNCList="closeModalDeleteNCList" v-model:show="dialogVisible"></modal-delete-not-calend-list>
+    <modal-delete-all-lists v-model:show="dialogDeleteAll" @closeModalDeleteAllLists="closeModalDeleteAllLists" @clearNCList="clearNCList"></modal-delete-all-lists>
   </div>
 
   <router-link to="/">Переход на главную</router-link>
@@ -42,7 +42,24 @@ export default {
       listId: 0,
     }
   },
+
+
   methods:{
+    /* работа с удалением всех недатированных списков дел*/
+    modalClearNCList(){
+      this.dialogDeleteAll = true
+    },
+
+    clearNCList(){
+      this.notCalendarList.splice(0, this.notCalendarList.length)
+      localStorage.setItem('notCalendarList', JSON.stringify(this.notCalendarList))
+      this.dialogDeleteAll = false
+    },
+
+    closeModalDeleteAllLists(){
+      this.dialogDeleteAll = false
+    },
+
     /*Открытие модального окна для переименования списка дел */
     renameList(listsItem,){
       this.renameModalVisible = true
@@ -82,11 +99,6 @@ export default {
         listsItem.completed = true
         localStorage.setItem('notCalendarList', JSON.stringify(this.notCalendarList))
       }
-    },
-
-    clearNCList(){
-      this.notCalendarList.splice(0, this.notCalendarList.length)
-      localStorage.setItem('notCalendarList', JSON.stringify(this.notCalendarList))
     },
 
     deleteCList(listsItem){

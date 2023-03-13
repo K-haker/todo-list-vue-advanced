@@ -27,7 +27,6 @@ export default {
         this.listsItem.id = Date.now() ;
         this.$emit('createNewCList', this.listsItem);
       },
-
     }
 }
 </script>
